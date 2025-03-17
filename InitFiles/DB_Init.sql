@@ -3,7 +3,6 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE Airline (
     AirlineCode TEXT PRIMARY KEY,
     AirlineName TEXT
-    
 );
 
 CREATE TABLE Manufacturer (
@@ -28,8 +27,6 @@ CREATE TABLE SeatRow (
     FOREIGN KEY (ConfigID) REFERENCES SeatConfig(ConfigID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-
 
 CREATE TABLE Airport (
     AirportCode TEXT PRIMARY KEY,
@@ -82,7 +79,7 @@ CREATE TABLE LoyalityProgram (
 );
 
 CREATE TABLE FlightRoute (
-    RouteID INTEGER,
+    RouteID TEXT,
     WeekdayCode TEXT,
     AirlineCode TEXT NOT NULL,
     StartDate DATE,
@@ -96,14 +93,13 @@ CREATE TABLE FlightRoute (
 );
 
 CREATE TABLE FlightSegment (
-    RouteID INTEGER,
+    SegmentID TEXT PRIMARY KEY,
+    RouteID TEXT NOT NULL,
     WeekdayCode TEXT NOT NULL,
-    SegmentNumber INTEGER,
     Origin TEXT NOT NULL,
     Destination TEXT NOT NULL,
-    DepatureTime TIME,
+    DepartureTime TIME,
     ArrivalTime TIME,
-    PRIMARY KEY (RouteID, SegmentNumber, WeekdayCode),
     FOREIGN KEY (RouteID, WeekdayCode) REFERENCES FlightRoute(RouteID, WeekdayCode)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Origin) REFERENCES Airport(AirportCode)
@@ -113,28 +109,26 @@ CREATE TABLE FlightSegment (
 );
 
 CREATE TABLE Flight (
-    FlightNumber INTEGER PRIMARY KEY,
+    FlightNumber TEXT PRIMARY KEY,
     RegNR TEXT,
-    RouteID INTEGER NOT NULL,
-    SegmentNumber INTEGER NOT NULL,
+    SegmentID TEXT NOT NULL,
     Date DATE,
     Status TEXT CHECK(Status IN ('Planned', 'Cancelled', 'Ongoing', 'Finished')),
     ActualDepartureTime DATETIME,
     ActualArrivalTime DATETIME,
     FOREIGN KEY (RegNR) REFERENCES Aircraft(RegNR)
         ON DELETE SET NULL ON UPDATE CASCADE,
-    FOREIGN KEY (RouteID, SegmentNumber) REFERENCES FlightSegment(RouteID, SegmentNumber)
+    FOREIGN KEY (SegmentID) REFERENCES FlightSegment(SegmentID)
         ON DELETE RESTRICT ON UPDATE CASCADE
-    UNIQUE (RouteID, SegmentNumber, Date)
+    UNIQUE (SegmentID, Date)
 );
 
 CREATE TABLE PriceList (
-    PriceListID INTEGER PRIMARY KEY,
-    RouteID INTEGER NOT NULL,
-    SegmentNumber INTEGER NOT NULL,
+    PriceListID TEXT PRIMARY KEY,
+    SegmentID TEXT NOT NULL,
     Category TEXT CHECK (Category IN ('Economy', 'Business', 'Premium')),
     CategoryPrice NUMERIC,
-    FOREIGN KEY (RouteID, SegmentNumber) REFERENCES FlightSegment(RouteID, SegmentNumber)
+    FOREIGN KEY (SegmentID) REFERENCES FlightSegment(SegmentID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -153,8 +147,8 @@ CREATE TABLE Booking (
 
 CREATE TABLE Ticket (
     ReferenceID INTEGER PRIMARY KEY,
-    FlightNumber INTEGER NOT NULL,
-    PriceListID INTEGER NOT NULL,
+    FlightNumber TEXT NOT NULL,
+    PriceListID TEXT NOT NULL,
     SoldPrice NUMERIC, 
     BoardingTime DATETIME,
     EarliestCheckInTime DATETIME,
@@ -169,7 +163,7 @@ CREATE TABLE Ticket (
 );
 
 CREATE TABLE BookedSeat (
-    FlightNumber INTEGER NOT NULL,
+    FlightNumber TEXT NOT NULL,
     Seat TEXT NOT NULL,
     TicketID INTEGER NOT NULL,
     PRIMARY KEY (FlightNumber, Seat, TicketID),
@@ -180,7 +174,7 @@ CREATE TABLE BookedSeat (
 );
 
 CREATE TABLE ProgramMembers (
-    LoyalityRef INTEGER PRIMARY KEY,
+    LoyalityRef TEXT PRIMARY KEY,
     ProgramCode TEXT NOT NULL,
     CustomerID INTEGER NOT NULL,
     FOREIGN KEY (ProgramCode) REFERENCES LoyalityProgram(ProgramCode)
@@ -201,11 +195,9 @@ CREATE TABLE Luggage (
 
 CREATE TABLE LuggageOnFlight (
     LuggageID INTEGER NOT NULL,
-    FlightNR INTEGER NOT NULL,
+    FlightNR TEXT NOT NULL,
     PRIMARY KEY (LuggageID, FlightNR),
-    FOREIGN KEY (LuggageID) REFERENCES Luggage(LuggageID),
-    FOREIGN KEY (FlightNR) REFERENCES Flight(FlightNumber)
-        FOREIGN KEY (LuggageID) REFERENCES Luggage(LuggageID)
+    FOREIGN KEY (LuggageID) REFERENCES Luggage(LuggageID)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (FlightNR) REFERENCES Flight(FlightNumber)
         ON DELETE CASCADE ON UPDATE CASCADE
@@ -213,23 +205,21 @@ CREATE TABLE LuggageOnFlight (
 
 CREATE TABLE AirportHasIncommingRoute (
     AirportCode TEXT NOT NULL,
-    RouteID INTEGER NOT NULL,
-    SegmentNumber INTEGER NOT NULL,
-    PRIMARY KEY (AirportCode, RouteID, SegmentNumber),
+    SegmentID TEXT NOT NULL,
+    PRIMARY KEY (AirportCode, SegmentID),
     FOREIGN KEY (AirportCode) REFERENCES Airport(AirportCode)
         ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (RouteID, SegmentNumber) REFERENCES FlightSegment(RouteID, SegmentNumber)
+    FOREIGN KEY (SegmentID) REFERENCES FlightSegment(SegmentID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE AirportHasOutgoingRoute (
     AirportCode TEXT NOT NULL,
-    RouteID INTEGER NOT NULL,
-    SegmentNumber INTEGER NOT NULL,
-    PRIMARY KEY (AirportCode, RouteID, SegmentNumber),
+    SegmentID TEXT NOT NULL,
+    PRIMARY KEY (AirportCode, SegmentID),
      FOREIGN KEY (AirportCode) REFERENCES Airport(AirportCode)
         ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (RouteID, SegmentNumber) REFERENCES FlightSegment(RouteID, SegmentNumber)
+    FOREIGN KEY (SegmentID) REFERENCES FlightSegment(SegmentID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -257,4 +247,16 @@ BEGIN
                 WHERE FlightNumber = NEW.FlightNumber) != 'Planned' )
         THEN RAISE(ABORT, 'Tickets can only be sold for planned flights')
     END;
+END;
+
+CREATE TRIGGER UpdateBookingTotalAfterInsert
+AFTER INSERT ON Ticket
+BEGIN
+    UPDATE Booking
+    SET TotalPrice = (
+        SELECT SUM(SoldPrice)
+        FROM Ticket
+        WHERE BookingID = NEW.BookingID
+    )
+    WHERE BookingRef = NEW.BookingID;
 END;
