@@ -21,3 +21,19 @@ Queries:
     1. When in Queries.sql press CTRL + SHIFT + P -> SQLite: Run Query
     2. Select Project_DB.db
     3. The result should be shown in window on right side in VScode
+
+
+Erik's comments:
+ - In requirements there isnt an empty DB, needed to delete existing one and make a new file
+ - In init:
+    0. How do i view it with SQLite Viewer?
+    1. Maybe change to "When in Initfiles/DB_Init.sql press CTRL + SHIFT + P -> SQLite: Run Query".
+    2. Good
+    3. Same as in stage 1.
+    4. Good
+    5. Good, maybe mention that some tables should and will be empty
+    6. Good
+- Queries:
+    1. Good
+    2. Good
+    3. Good
