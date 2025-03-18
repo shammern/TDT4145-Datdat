@@ -72,7 +72,7 @@ This use case allows users to retrieve information about airlines, aircraft type
 #### **Steps to Retrieve Airline and Aircraft Data:**  
 
 1. **Open the Query File:**
-   - Navigate to the [`queries/use_case_5.sql`](queries/use_case_5.sql) file in **VS Code**.
+   - Navigate to the [`sql_operations/use_case_5.sql`](sql_operations/use_case_5.sql) file in **VS Code**.
 
 2. **Execute the SQL Query:**
    - Press `CTRL + SHIFT + P` → Select `SQLite: Run Query`.
@@ -88,7 +88,7 @@ This use case allows users to retrieve flight schedules from the database based 
 #### **Steps to Check Flight Schedules:**
 
 1. **Open the Script:**
-   - Navigate to [`operations/use_case_6.py`](operations/use_case_6.py) in **VS Code**.
+   - Navigate to [`py_operations/use_case_6.py`](py_operations/use_case_6.py) in **VS Code**.
 
 2. **Select a Python Interpreter:**
    - Press `CTRL + SHIFT + P` → Select `Python: Select Interpreter`.
@@ -111,7 +111,7 @@ This use case allows users to place flight reservations in the system.
 #### **Steps to Book a Flight:**
 
 1. **Open the Script:**
-   - Navigate to [`operations/use_case_7.py`](operations/use_case_7.py) in **VS Code**.
+   - Navigate to [`sql_operations/use_case_7.sql`](sql_operations/use_case_7.sql) in **VS Code**.
 
 2. **Run the Script:**
    - Press `CTRL + SHIFT + P` → Select `Python: Run Python File in Terminal`.
@@ -134,7 +134,7 @@ This use case allows users to check seat availability on specific flights.
 #### **Steps to Find Available Seats:**
 
 1. **Open the Script:**
-   - Navigate to [`operations/use_case_8.py`](operations/use_case_8.py) in **VS Code**.
+   - Navigate to [`py_operations/use_case_8.py`](py_operations/use_case_8.py) in **VS Code**.
 
 2. **Run the Script:**
    - Press `CTRL + SHIFT + P` → Select `Python: Run Python File in Terminal`.
