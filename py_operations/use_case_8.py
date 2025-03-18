@@ -87,7 +87,8 @@ def print_seat_layout(db_path, route_id, flight_date):
         print("No planned flight found for that route and date.")
         return
     
-    print(f"Flight number: {flight_number} (Aircraft type: {type_name})")
+    print(f"\n  Flight number: {flight_number}")
+    print(f"  Aircraft type: {type_name}\n")
     
     config_id = get_seat_configuration(db_path, type_name)
     seat_rows = get_seat_rows(db_path, config_id)
@@ -132,7 +133,7 @@ def print_seat_layout(db_path, route_id, flight_date):
             right_side += color_ljust(seat_text, seat_width)
         
         # Print the row with a gap between the two sides
-        print(left_side + "   " + right_side)
+        print("  " +left_side + "   " + right_side)
 
 if __name__ == '__main__':
     db_path = 'data/Project_DB.db'
@@ -151,7 +152,7 @@ if __name__ == '__main__':
     while True:
         route_id = input("\nEnter flight route ID: ").strip().upper()
         if route_id not in route_ids:
-            print("Invalid route ID, please try again.")
+            print(f"\n\t{RED}Invalid route ID, please try again.{RESET}")
         else:
             break
     
@@ -162,7 +163,7 @@ if __name__ == '__main__':
             datetime.strptime(flight_date, "%Y-%m-%d")
             break
         except ValueError:
-            print("Invalid date format. Please enter the date in YYYY-MM-DD format.")
+            print(f"\n\t{RED}Invalid date format. Please enter the date in YYYY-MM-DD format.{RESET}")
     
     # Print the seat layout with color coding
     print_seat_layout(db_path, route_id, flight_date)
