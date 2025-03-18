@@ -6,7 +6,6 @@ import re
 # These were found with the support from ChatGPT
 GREEN = "\033[92m"
 RED = "\033[91m"
-BLUE = "\033[94m"
 RESET = "\033[0m"
 
 # Formats string to be properly aligned when writing result to terminal
@@ -21,7 +20,7 @@ def color_ljust(text: str, width: int) -> str:
     return text
 
 # Runs a query on the DB returning the flight number and aircrafttype for a given route and date
-def find_flight_numbers(db_path, route_id, flight_date):
+def find_flight_number(db_path, route_id, flight_date):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     query = """
@@ -35,11 +34,15 @@ def find_flight_numbers(db_path, route_id, flight_date):
       AND f.Status = 'Planned'
     """
 
-    
     cur.execute(query, (route_id, flight_date))
-    rows = cur.fetchall()
+    row = cur.fetchone()
     conn.close()
-    return rows
+
+    #Returns flightNR and aircraft type name if found
+    if row:
+        return row[0], row[1]
+    else:
+        return None, None
 
 
 # Runs a query on the DB retreiving seat config, given an aircraft type.
@@ -77,9 +80,14 @@ def get_available_seats(db_path, flight_number):
 
 # Prints the seatlayout in a nicly formated way where each row is printed on the same line, 
 # available seats in green, and unavaiable seats are marked with a red X.
-def print_seat_layout_for_flight(db_path, flight_number, type_name):
+# This function was made with support from ChatGPT
+def print_seat_layout(db_path, route_id, flight_date):
+    flight_number, type_name = find_flight_number(db_path, route_id, flight_date)
+    if not flight_number:
+        print("No planned flight found for that route and date.")
+        return
     
-    print(f"\nSeat availability for flight \033[1m{flight_number}\033[0m on aircraft type \033[1m{type_name}\033[0m:\n")
+    print(f"Flight number: {flight_number} (Aircraft type: {type_name})")
     
     config_id = get_seat_configuration(db_path, type_name)
     seat_rows = get_seat_rows(db_path, config_id)
@@ -91,7 +99,6 @@ def print_seat_layout_for_flight(db_path, flight_number, type_name):
     
     seat_width = 5
     
-    # The seat layout is printed row by row. Was implemented with support from ChatGPT
     for row_number, left_seats, right_seats in seat_rows:
         left_seats = left_seats or ""
         right_seats = right_seats or ""
@@ -125,54 +132,37 @@ def print_seat_layout_for_flight(db_path, flight_number, type_name):
             right_side += color_ljust(seat_text, seat_width)
         
         # Print the row with a gap between the two sides
-        print("  " +left_side + "   " + right_side)
-    print("\n")
-
-
-# Finds and print all flights for a given route at a specific date
-def print_seat_layout(db_path, route_id, flight_date):
-    flights = find_flight_numbers(db_path, route_id, flight_date)
-    if not flights:
-        print("No planned flight found for that route and date.")
-        return
-    
-    flights = flights[:2]
-    for flight_number, type_name in flights:
-        print_seat_layout_for_flight(db_path, flight_number, type_name)
-
+        print(left_side + "   " + right_side)
 
 if __name__ == '__main__':
-    db_path = 'data/Project_DB.db'
+    db_path = 'Project_DB.db'
     
     # Retrieve and display available Route IDs.
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("SELECT DISTINCT RouteID FROM FlightRoute ORDER BY RouteID")
     route_ids = [row[0] for row in cur.fetchall()]
-    print("\nAvailable Route IDs:")
+    print("Available Route IDs:")
     for rid in route_ids:
-        print("  " + rid)
+        print(rid)
     conn.close()
     
     # Get user input for route ID
     while True:
-        route_id = input(f"\nEnter flight route ID:\n{BLUE}> ").strip().upper()
-        print(RESET, end="")
+        route_id = input("Enter flight route ID (e.g., WF1302): ").strip().upper()
         if route_id not in route_ids:
-            print(f"\n  {RED}Invalid route ID, please try again.{RESET}")
-
+            print("Invalid route ID, please try again.")
         else:
             break
     
     # Get user input for flight date
     while True:
-        flight_date = input(f"\nEnter flight date (YYYY-MM-DD):\n{BLUE}> ").strip().lower()
-        print(RESET, end="")
+        flight_date = input("Enter flight date (YYYY-MM-DD): ").strip()
         try:
             datetime.strptime(flight_date, "%Y-%m-%d")
             break
         except ValueError:
-            print(f"\n  {RED}Invalid date format. Please enter the date in YYYY-MM-DD format.{RESET}")
-
+            print("Invalid date format. Please enter the date in YYYY-MM-DD format.")
+    
     # Print the seat layout with color coding
     print_seat_layout(db_path, route_id, flight_date)

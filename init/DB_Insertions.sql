@@ -198,53 +198,53 @@ INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES
   ('P_WF1302E_1_5', 'WF1302_1_5', 'Economy', 599);
 
 
--- Data for DY743
+-- Data for DY753
 INSERT INTO FlightRoute (RouteID, WeekdayCode, AirlineCode, StartDate, EndDate, TypeName) VALUES
-  ('DY743', '1', 'DY', NULL, NULL, 'Boeing 737 800'),
-  ('DY743', '2', 'DY', NULL, NULL, 'Boeing 737 800'),
-  ('DY743', '3', 'DY', NULL, NULL, 'Boeing 737 800'),
-  ('DY743', '4', 'DY', NULL, NULL, 'Boeing 737 800'),
-  ('DY743', '5', 'DY', NULL, NULL, 'Boeing 737 800'),
-  ('DY743', '6', 'DY', NULL, NULL, 'Boeing 737 800'),
-  ('DY743', '7', 'DY', NULL, NULL, 'Boeing 737 800');
+  ('DY753', '1', 'DY', NULL, NULL, 'Boeing 737 800'),
+  ('DY753', '2', 'DY', NULL, NULL, 'Boeing 737 800'),
+  ('DY753', '3', 'DY', NULL, NULL, 'Boeing 737 800'),
+  ('DY753', '4', 'DY', NULL, NULL, 'Boeing 737 800'),
+  ('DY753', '5', 'DY', NULL, NULL, 'Boeing 737 800'),
+  ('DY753', '6', 'DY', NULL, NULL, 'Boeing 737 800'),
+  ('DY753', '7', 'DY', NULL, NULL, 'Boeing 737 800');
 
 INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime) VALUES
-  ('DY743_1_1', 'DY743', '1', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY743_1_2', 'DY743', '2', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY743_1_3', 'DY743', '3', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY743_1_4', 'DY743', '4', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY743_1_5', 'DY743', '5', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY743_1_6', 'DY743', '6', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY743_1_7', 'DY743', '7', 'TRD', 'OSL', '10:20', '11:15');
+  ('DY753_1_1', 'DY753', '1', 'TRD', 'OSL', '10:20', '11:15'),
+  ('DY753_1_2', 'DY753', '2', 'TRD', 'OSL', '10:20', '11:15'),
+  ('DY753_1_3', 'DY753', '3', 'TRD', 'OSL', '10:20', '11:15'),
+  ('DY753_1_4', 'DY753', '4', 'TRD', 'OSL', '10:20', '11:15'),
+  ('DY753_1_5', 'DY753', '5', 'TRD', 'OSL', '10:20', '11:15'),
+  ('DY753_1_6', 'DY753', '6', 'TRD', 'OSL', '10:20', '11:15'),
+  ('DY753_1_7', 'DY753', '7', 'TRD', 'OSL', '10:20', '11:15');
 
 INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES
-  ('P_DY743P_1_1', 'DY743_1_1', 'Premium', 1500),
-  ('P_DY743B_1_1', 'DY743_1_1', 'Business', 1000),
-  ('P_DY743E_1_1', 'DY743_1_1', 'Economy', 500),
+  ('P_DY753P_1_1', 'DY753_1_1', 'Premium', 1500),
+  ('P_DY753B_1_1', 'DY753_1_1', 'Business', 1000),
+  ('P_DY753E_1_1', 'DY753_1_1', 'Economy', 500),
   
-  ('P_DY743P_1_2', 'DY743_1_2', 'Premium', 1500),
-  ('P_DY743B_1_2', 'DY743_1_2', 'Business', 1000),
-  ('P_DY743E_1_2', 'DY743_1_2', 'Economy', 500),
+  ('P_DY753P_1_2', 'DY753_1_2', 'Premium', 1500),
+  ('P_DY753B_1_2', 'DY753_1_2', 'Business', 1000),
+  ('P_DY753E_1_2', 'DY753_1_2', 'Economy', 500),
   
-  ('P_DY743P_1_3', 'DY743_1_3', 'Premium', 1500),
-  ('P_DY743B_1_3', 'DY743_1_3', 'Business', 1000),
-  ('P_DY743E_1_3', 'DY743_1_3', 'Economy', 500),
+  ('P_DY753P_1_3', 'DY753_1_3', 'Premium', 1500),
+  ('P_DY753B_1_3', 'DY753_1_3', 'Business', 1000),
+  ('P_DY753E_1_3', 'DY753_1_3', 'Economy', 500),
   
-  ('P_DY743P_1_4', 'DY743_1_4', 'Premium', 1500),
-  ('P_DY743B_1_4', 'DY743_1_4', 'Business', 1000),
-  ('P_DY743E_1_4', 'DY743_1_4', 'Economy', 500),
+  ('P_DY753P_1_4', 'DY753_1_4', 'Premium', 1500),
+  ('P_DY753B_1_4', 'DY753_1_4', 'Business', 1000),
+  ('P_DY753E_1_4', 'DY753_1_4', 'Economy', 500),
   
-  ('P_DY743P_1_5', 'DY743_1_5', 'Premium', 1500),
-  ('P_DY743B_1_5', 'DY743_1_5', 'Business', 1000),
-  ('P_DY743E_1_5', 'DY743_1_5', 'Economy', 500),
+  ('P_DY753P_1_5', 'DY753_1_5', 'Premium', 1500),
+  ('P_DY753B_1_5', 'DY753_1_5', 'Business', 1000),
+  ('P_DY753E_1_5', 'DY753_1_5', 'Economy', 500),
   
-  ('P_DY743P_1_6', 'DY743_1_6', 'Premium', 1500),
-  ('P_DY743B_1_6', 'DY743_1_6', 'Business', 1000),
-  ('P_DY743E_1_6', 'DY743_1_6', 'Economy', 500),
+  ('P_DY753P_1_6', 'DY753_1_6', 'Premium', 1500),
+  ('P_DY753B_1_6', 'DY753_1_6', 'Business', 1000),
+  ('P_DY753E_1_6', 'DY753_1_6', 'Economy', 500),
   
-  ('P_DY743P_1_7', 'DY743_1_7', 'Premium', 1500),
-  ('P_DY743B_1_7', 'DY743_1_7', 'Business', 1000),
-  ('P_DY743E_1_7', 'DY743_1_7', 'Economy', 500);
+  ('P_DY753P_1_7', 'DY753_1_7', 'Premium', 1500),
+  ('P_DY753B_1_7', 'DY753_1_7', 'Business', 1000),
+  ('P_DY753E_1_7', 'DY753_1_7', 'Economy', 500);
 
 
 -- Data for SK332
@@ -381,7 +381,7 @@ INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES
 --USECASE 4: Insertion of physical flights (no assigned airplane).
 INSERT INTO Flight (FlightNumber, RegNR, SegmentID, Date, Status, ActualDepartureTime, ActualArrivalTime) VALUES 
   ('F001_WF1302', NULL, 'WF1302_1_2', '2025-04-01', 'Planned', NULL, NULL),
-  ('F001_DY573', NULL, 'DY573_1_2', '2025-04-01', 'Planned', NULL, NULL),
+  ('F001_DY753', NULL, 'DY753_1_2', '2025-04-01', 'Planned', NULL, NULL),
   ('F001_SK888', NULL, 'SK888_1_2', '2025-04-01', 'Planned', NULL, NULL),
   ('F002_SK888', NULL, 'SK888_2_2', '2025-04-01', 'Planned', NULL, NULL), 
   ('F003_SK888', NULL, 'SK888_3_2', '2025-04-01', 'Planned', NULL, NULL);
