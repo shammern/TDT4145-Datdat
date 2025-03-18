@@ -1,4 +1,4 @@
-<!-- In VS Code, right-click README.md and select “Open Preview” to view the formatted document. -->
+<!-- NOTE: In VS Code, right-click README.md and select “Open Preview” to view the formatted document. -->
 
 # TDT4145 - Datamodellering og Databasesystemer: Project
 
