@@ -20,7 +20,7 @@ def color_ljust(text: str, width: int) -> str:
     return text
 
 # Runs a query on the DB returning the flight number and aircrafttype for a given route and date
-def find_flight_number(db_path, route_id, flight_date):
+def find_flight_numbers(db_path, route_id, flight_date):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     query = """
@@ -34,15 +34,11 @@ def find_flight_number(db_path, route_id, flight_date):
       AND f.Status = 'Planned'
     """
 
+    
     cur.execute(query, (route_id, flight_date))
-    row = cur.fetchone()
+    rows = cur.fetchall()
     conn.close()
-
-    #Returns flightNR and aircraft type name if found
-    if row:
-        return row[0], row[1]
-    else:
-        return None, None
+    return rows
 
 
 # Runs a query on the DB retreiving seat config, given an aircraft type.
@@ -80,11 +76,7 @@ def get_available_seats(db_path, flight_number):
 
 # Prints the seatlayout in a nicly formated way where each row is printed on the same line, 
 # available seats in green, and unavaiable seats are marked with a red X.
-def print_seat_layout(db_path, route_id, flight_date):
-    flight_number, type_name = find_flight_number(db_path, route_id, flight_date)
-    if not flight_number:
-        print("No planned flight found for that route and date.")
-        return
+def print_seat_layout_for_flight(db_path, flight_number, type_name):
     
     print(f"\n  Flight number: {flight_number}")
     print(f"  Aircraft type: {type_name}\n")
@@ -134,6 +126,19 @@ def print_seat_layout(db_path, route_id, flight_date):
         
         # Print the row with a gap between the two sides
         print("  " +left_side + "   " + right_side)
+
+
+# Finds and print all flights for a given route at a specific date
+def print_seat_layout(db_path, route_id, flight_date):
+    flights = find_flight_numbers(db_path, route_id, flight_date)
+    if not flights:
+        print("No planned flight found for that route and date.")
+        return
+    
+    flights = flights[:2]
+    for flight_number, type_name in flights:
+        print_seat_layout_for_flight(db_path, flight_number, type_name)
+
 
 if __name__ == '__main__':
     db_path = 'data/Project_DB.db'
