@@ -1,6 +1,6 @@
 import sqlite3
 
-def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket_id=0):
+def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket_id = None):
     """
     For the given flight number, this function:
       1. Retrieves the flight's SegmentID from the Flight table.
