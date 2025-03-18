@@ -4,17 +4,25 @@
 
 ## Table of Contents
 - [Overview](#overview)
+  - [Project Contributors](#project-contributors)
 - [Requirements](#requirements)
 - [Project Initialization (Use Case 1-4)](#project-initialization-use-case-1-4)
 - [Database Operations and Queries](#database-operations-and-queries)
-    - [Retrieving Airline and Aircraft Data (Use Case 5)](#retrieving-airline-and-aircraft-data-use-case-5)
-    - [Airport Schedule Lookup (Use Case 6)](#airport-schedule-lookup-use-case-6)
-    - [Booking Flights (Use Case 7)](#booking-flights-use-case-7)
-    - [Finding Available Seats on Flights (Use Case 8)](#finding-available-seats-on-flights-use-case-8)
+  - [Retrieving Airline and Aircraft Data (Use Case 5)](#retrieving-airline-and-aircraft-data-use-case-5)
+  - [Airport Schedule Lookup (Use Case 6)](#airport-schedule-lookup-use-case-6)
+  - [Booking Flights (Use Case 7)](#booking-flights-use-case-7)
+  - [Finding Available Seats on Flights (Use Case 8)](#finding-available-seats-on-flights-use-case-8)
 
 ## Overview
 This project is developed as part of **TDT4145 - Datamodellering og Databasesystemer** and is implemented using **VS Code** and **SQLite3**.  
 It focuses on designing and managing a relational database to support various use cases in database management.
+
+For a detailed project description, see `docs/project_description.pdf`.
+
+### **Project Contributors:**
+- Erik Alexander Standal
+- Torstein Pundsnes
+- Sigve Semdshammer
 
 ## Requirements
 Before running the project, ensure that the following are installed and set up:
