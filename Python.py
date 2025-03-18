@@ -50,10 +50,26 @@ if __name__ == '__main__':
     for code, name in airports:
         print(f"{code}: {name}")
     conn.close()
+    while True:
+      airport_code = input("Choose an airport [Use airport code from list]: ").strip().upper()
+      if not any(airport_code == code for code, name in airports):
+        print("Invalid airport code, please try again.")
+      else:
+        break
     
-    airport_code = input("Choose an airport [Use airportcode from list]").strip()
-    weekday_code = input("Choose a weekday [1-7]: ").strip()
-    dep_or_arr = input("Departures or arrivals? [departures, arrivals]: ").strip()
+    while True:
+        weekday_code = input("Choose a weekday [1-7]: ").strip()
+        if weekday_code not in [str(i) for i in range(1, 8)]:
+            print("Invalid weekday code, please try again.")
+        else:
+            break
+
+    while True:
+        dep_or_arr = input("Departures or arrivals? [departures, arrivals]: ").strip().lower()
+        if dep_or_arr not in ['departures', 'arrivals']:
+            print("Invalid option, please choose 'departures' or 'arrivals'.")
+        else:
+            break
 
     routes = get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr)
     if routes:
