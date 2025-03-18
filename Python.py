@@ -51,7 +51,7 @@ if __name__ == '__main__':
         print(f"{code}: {name}")
     conn.close()
     
-    airport_code = input("Choose an airport [Use airportcode from list]").strip()
+    airport_code = input("Choose an airport [Use airportcode from list]: ").strip()
     weekday_code = input("Choose a weekday [1-7]: ").strip()
     dep_or_arr = input("Departures or arrivals? [departures, arrivals]: ").strip()
 

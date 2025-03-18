@@ -4,9 +4,9 @@ NOTE:
 This project has been realized using VScode and sqlite3
 
 Reqirements:
-    - Extensions: SQLite, SQLite Viewer
-    - Empty DB, provided is Project_DB.db
     - VScode
+    - VScode-extensions: SQLite (by alexcvzz), SQLite Viewer (Florian Klampfer)
+    - Empty DB, provided is Project_DB.db  
 
 Initizialisation of project:
     0. Verify that Project_DB is empty by navigating to it and viewing with SQLite Viewer
