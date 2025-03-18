@@ -1,44 +1,54 @@
 # TDT4145 - Datamodellering og Databasesystemer: Project
 
+## Table of Contents
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Project Initialization](#project-initialization)
+- [Running Queries](#running-queries)
+
 ## Overview
-This project has been implemented using **VS Code** and **SQLite3**.
+This project is developed as part of **TDT4145 - Datamodellering og Databasesystemer** and is implemented using **VS Code** and **SQLite3**.  
+It focuses on designing and managing a relational database to support various use cases in database management.
 
 ## Requirements
-Ensure you have the following installed before running the project:
+Before running the project, ensure that the following are installed and set up:
 
-- **Extensions:** SQLite, SQLite Viewer (VS Code)
-- **Database:** An empty database file (**Project_DB.db**) is provided
-- **Editor:** Visual Studio Code (VS Code)
+- **VS Code Extensions:**
+  - SQLite
+  - SQLite Viewer
+- **Database File:**  
+  - An empty database file (`Project_DB.db`) is provided in the project directory.
+- **Editor:**  
+  - **Visual Studio Code (VS Code)** is recommended for running queries.
 
 ## Project Initialization
 Follow these steps to initialize the database:
 
-### 1. Verify or Create the Database
-- Navigate to `Project_DB.db` to ensure it is empty.
-- If the database is not empty, delete `Project_DB.db` and create a new database file named **Project_DB.db** (the name must match exactly for the Python scripts to function properly).
+1. **Verify or Create the Database**
+    - Open the project directory and locate `Project_DB.db`.  
+    - If the file exists but is **not empty**, delete it and create a new database file named `Project_DB.db`.  
+        - The file **must** have this exact name for the Python scripts to work.
 
-### 2. Run Database Initialization Script
-- Open `InitFiles/DB_Init.sql`
-- Press **CTRL + SHIFT + P** → Select **SQLite: Run Query**
-- Choose **Project_DB.db** when prompted.
-- Ensure that you have selected the correct database file; otherwise, queries may not execute as expected.
+2. **Run Database Initialization Script**
+    - Open `InitFiles/DB_Init.sql` in VS Code.  
+    - Press **CTRL + SHIFT + P** → Select **SQLite: Run Query**
+    - When prompted, select `Project_DB.db`.  
 
-### 3. Insert Sample Data
-- Open `InitFiles/DB_Insertions.sql`
-- Press **CTRL + SHIFT + P** → Select **SQLite: Run Query**
-- Choose **Project_DB.db** (same as in Step 2).
-- Some tables may remain empty after this step, depending on the dataset.
+3. **Insert Sample Data**
+    - Open `InitFiles/DB_Insertions.sql` in VS Code.  
+    - Press **CTRL + SHIFT + P** → Select **SQLite: Run Query**
+    - Select `Project_DB.db` (same file as in Step 2).
 
-### 4. Verify Database Initialization
-- Open **SQLite Viewer** in VS Code.
-- Navigate to **Project_DB.db** and click the **refresh button (top left)**.
-- Some tables will contain data, while others might be empty. This is expected behavior.
-- The database is now initialized with entries described in Use Cases 1-4.
+4. **Verify Database Initialization**
+    - Open **SQLite Viewer** in VS Code.  
+    - Navigate to `Project_DB.db` and click the **refresh button (top left)**.  
+        - Some tables may remain empty, depending on the dataset.
+    - The database is now initialized with entries as described in Use Cases 1-4.
 
 ## Running Queries
-To execute queries from the provided SQL script:
+To execute SQL queries:
 
-1. Open **Queries.sql**
+1. Open **Queries.sql** in VS Code.  
 2. Press **CTRL + SHIFT + P** → Select **SQLite: Run Query**
-3. Choose **Project_DB.db**  
-4. The query results should be displayed in the right-side panel in VS Code.
+3. Select `Project_DB.db`.  
+4. The query results will be displayed in the right-side panel in VS Code.
