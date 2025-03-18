@@ -152,11 +152,8 @@ if __name__ == '__main__':
     while True:
         route_id = input("\nEnter flight route ID: ").strip().upper()
         if route_id not in route_ids:
-<<<<<<< HEAD
             print(f"\n\t{RED}Invalid route ID, please try again.{RESET}")
-=======
-            print("\n\t\033[91mInvalid route ID, please try again.\033[0m")
->>>>>>> a58d18769638dc73b3f9208a2e851a7eec39512a
+
         else:
             break
     
@@ -167,11 +164,7 @@ if __name__ == '__main__':
             datetime.strptime(flight_date, "%Y-%m-%d")
             break
         except ValueError:
-<<<<<<< HEAD
             print(f"\n\t{RED}Invalid date format. Please enter the date in YYYY-MM-DD format.{RESET}")
-=======
-            print("\n\t\033[91mInvalid date format. Please enter the date in YYYY-MM-DD format.\033[0m")
->>>>>>> a58d18769638dc73b3f9208a2e851a7eec39512a
-    
+
     # Print the seat layout with color coding
     print_seat_layout(db_path, route_id, flight_date)
