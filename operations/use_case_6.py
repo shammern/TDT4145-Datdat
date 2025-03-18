@@ -40,7 +40,7 @@ def get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr):
     return results
 
 if __name__ == '__main__':
-    db_path = 'Project_DB.db'
+    db_path = 'data/Project_DB.db'
 
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()

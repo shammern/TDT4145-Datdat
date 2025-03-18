@@ -58,7 +58,6 @@ This section covers the process of setting up the database and inserting initial
     - Select `data/Project_DB.db` (same file as in Step 2).
 
 4. **Verify Database Initialization**
-    - Open **SQLite Viewer** in VS Code.  
     - Navigate to `data/Project_DB.db` and click the **refresh button (top left)**.  
         - Some tables may remain empty, depending on the dataset.
 
