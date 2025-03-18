@@ -5,8 +5,8 @@ def get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     
+    # For departures, join via AirportHasOutgoingRoute using SegmentID.
     if dep_or_arr.lower() == 'departures':
-        # For departures, join via AirportHasOutgoingRoute using SegmentID.
         query = """
         SELECT FR.RouteID,
                FS.DepartureTime AS Time,
@@ -19,8 +19,9 @@ def get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr):
         WHERE AOR.AirportCode = ? AND FS.WeekdayCode = ?
         GROUP BY FR.RouteID, FS.DepartureTime;
         """
+
+    # For arrivals, join via AirportHasIncommingRoute using SegmentID.
     else:
-        # For arrivals, join via AirportHasIncommingRoute using SegmentID.
         query = """
         SELECT FR.RouteID,
                FS.ArrivalTime AS Time,
@@ -34,6 +35,7 @@ def get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr):
         GROUP BY FR.RouteID, FS.ArrivalTime;
         """
     
+    # Execute the query and return the results.
     cur.execute(query, (airport_code, weekday_code))
     results = cur.fetchall()
     conn.close()
@@ -41,7 +43,8 @@ def get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr):
 
 if __name__ == '__main__':
     db_path = 'Project_DB.db'
-
+    
+    # Fetch and display the available airports.
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("SELECT AirportCode, AirportName FROM Airport ORDER BY AirportCode")
@@ -50,21 +53,24 @@ if __name__ == '__main__':
     for code, name in airports:
         print(f"{code}: {name}")
     conn.close()
-    
+
+    # Get user input for airport code.
     while True:
       airport_code = input("Choose an airport [Use airport code from list]: ").strip().upper()
       if not any(airport_code == code for code, name in airports):
         print("Invalid airport code, please try again.")
       else:
         break
-    
+
+    # Get user input for weekday code.
     while True:
         weekday_code = input("Choose a weekday [1-7]: ").strip()
         if weekday_code not in [str(i) for i in range(1, 8)]:
             print("Invalid weekday code, please try again.")
         else:
             break
-
+        
+    # Get user input for departures or arrivals.
     while True:
         dep_or_arr = input("Departures or arrivals? [departures, arrivals]: ").strip().lower()
         if dep_or_arr not in ['departures', 'arrivals']:
@@ -72,6 +78,7 @@ if __name__ == '__main__':
         else:
             break
 
+    # Fetch and display the flight routes.
     routes = get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr)
     if routes:
         print("\nResult:")
