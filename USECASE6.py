@@ -1,7 +1,7 @@
 import sqlite3
 
+# Runs a query to find flight routes for a given airport, weekday and wether the user wants departures or arrivals from the given airport
 def get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr):
-    """Fetch flight routes based on the selected airport, weekday, and whether the user wants departures or arrivals."""
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     
@@ -35,7 +35,6 @@ def get_flight_routes(db_path, airport_code, weekday_code, dep_or_arr):
         GROUP BY FR.RouteID, FS.ArrivalTime;
         """
     
-    # Execute the query and return the results.
     cur.execute(query, (airport_code, weekday_code))
     results = cur.fetchall()
     conn.close()
