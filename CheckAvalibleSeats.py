@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 
 def find_flight_number(db_path, route_id, flight_date):
     """
@@ -136,6 +137,33 @@ def print_seat_layout(db_path, route_id, flight_date):
 if __name__ == '__main__':
     # Update db_path to the correct location of your database file.
     db_path = 'Project_DB.db'
-    route_id = input("Enter flight route ID (e.g., WF1302): ").strip()
-    flight_date = input("Enter flight date (YYYY-MM-DD): ").strip()
+    
+    # Fetch and display the available route IDs.
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT RouteID FROM FlightRoute ORDER BY RouteID")
+    route_ids = [row[0] for row in cur.fetchall()]
+    print("Available Route IDs:")
+    for route_id in route_ids:
+        print(route_id)
+    conn.close()
+    
+    # Get user input for route ID.
+    while True:
+        route_id = input("Enter flight route ID (e.g., WF1302): ").strip().upper()
+        if route_id not in route_ids:
+            print("Invalid route ID, please try again.")
+        else:
+            break
+    
+    # Get user input for flight date.
+    while True:
+        flight_date = input("Enter flight date (YYYY-MM-DD): ").strip()
+        try:
+            datetime.strptime(flight_date, "%Y-%m-%d")
+            break
+        except ValueError:
+            print("Invalid date format. Please enter the date in YYYY-MM-DD format.")
+    
+    # Print the seat layout for the selected flight route and date.
     print_seat_layout(db_path, route_id, flight_date)
