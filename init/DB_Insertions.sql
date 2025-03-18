@@ -381,7 +381,7 @@ INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES
 --USECASE 4: Insertion of physical flights (no assigned airplane).
 INSERT INTO Flight (FlightNumber, RegNR, SegmentID, Date, Status, ActualDepartureTime, ActualArrivalTime) VALUES 
   ('F001_WF1302', NULL, 'WF1302_1_2', '2025-04-01', 'Planned', NULL, NULL),
-  ('F001_DY573', NULL, 'DY573_1_2', '2025-04-01', 'Planned', NULL, NULL),
+  ('F001_DY753', NULL, 'DY753_1_2', '2025-04-01', 'Planned', NULL, NULL),
   ('F001_SK888', NULL, 'SK888_1_2', '2025-04-01', 'Planned', NULL, NULL),
   ('F002_SK888', NULL, 'SK888_2_2', '2025-04-01', 'Planned', NULL, NULL), 
   ('F003_SK888', NULL, 'SK888_3_2', '2025-04-01', 'Planned', NULL, NULL);
