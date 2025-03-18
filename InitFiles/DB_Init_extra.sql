@@ -7,3 +7,4 @@ FROM FlightSegment;
 INSERT INTO AirportHasOutgoingRoute (AirportCode, SegmentID)
 SELECT Origin, SegmentID
 FROM FlightSegment;
+
