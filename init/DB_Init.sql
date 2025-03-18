@@ -165,8 +165,8 @@ CREATE TABLE Ticket (
 CREATE TABLE BookedSeat (
     FlightNumber TEXT NOT NULL,
     Seat TEXT NOT NULL,
-    TicketID INTEGER NOT NULL,
-    PRIMARY KEY (FlightNumber, Seat, TicketID),
+    TicketID INTEGER,
+    PRIMARY KEY (FlightNumber, Seat),
     FOREIGN KEY (FlightNumber) REFERENCES Flight(FlightNumber)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (TicketID) REFERENCES Ticket(ReferenceID)

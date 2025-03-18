@@ -1,39 +1,149 @@
-TDT4145 Datamodellering og databasesyster - Project
+<!-- NOTE: In VS Code, right-click README.md and select “Open Preview” to view the formatted document. -->
 
-NOTE: 
-This project has been realized using VScode and sqlite3
+# TDT4145 - Datamodellering og Databasesystemer: Project
 
-Reqirements:
-    - Extensions: SQLite, SQLite Viewer
-    - Empty DB, provided is Project_DB.db
-    - VScode
+## Table of Contents
+- [Overview](#overview)
+  - [Project Contributors](#project-contributors)
+- [Requirements](#requirements)
+- [Project Initialization (Use Case 1-4)](#project-initialization-use-case-1-4)
+- [Database Operations and Queries](#database-operations-and-queries)
+  - [Retrieving Airline and Aircraft Data (Use Case 5)](#retrieving-airline-and-aircraft-data-use-case-5)
+  - [Airport Schedule Lookup (Use Case 6)](#airport-schedule-lookup-use-case-6)
+  - [Booking Flights (Use Case 7)](#booking-flights-use-case-7)
+  - [Finding Available Seats on Flights (Use Case 8)](#finding-available-seats-on-flights-use-case-8)
 
-Initizialisation of project:
-    0. Verify that Project_DB is empty by navigating to it and viewing with SQLite Viewer
-    1. When in DB_Init.sql press CTRL + SHIFT + P -> SQLite: Run Query
-    2. Select Project_DB.db (or another empty DB)
-    3. Go to DB_Insertions.sql, press CTRL + SHIFT + P -> SQLite: Run Query
-    4. Select Project_DB.db (the same as in step 2)
-    5. Verify that DB has been created and filled with entries by navigating to it and viewing with SQLite Viewer (Hit refresh button top left)
-    6. The DB will now have been initilized and filled with entires described in usecase 1-4
+## Overview
+This project is developed as part of **TDT4145 - Datamodellering og Databasesystemer** and is implemented using **VS Code** and **SQLite3**.  
+It focuses on designing and managing a relational database to support various use cases in database management.
 
-Queries:
-    1. When in Queries.sql press CTRL + SHIFT + P -> SQLite: Run Query
-    2. Select Project_DB.db
-    3. The result should be shown in window on right side in VScode
+For a detailed project description, see [`docs/project_description.pdf`](docs/project_description.pdf).
 
+### **Project Contributors:**
+- Erik Alexander Standal
+- Torstein Pundsnes
+- Sigve Semdshammer
 
-Erik's comments:
- - In requirements there isnt an empty DB, needed to delete existing one and make a new file
- - In init:
-    0. How do i view it with SQLite Viewer?
-    1. Maybe change to "When in Initfiles/DB_Init.sql press CTRL + SHIFT + P -> SQLite: Run Query".
-    2. Good
-    3. Same as in stage 1.
-    4. Good
-    5. Good, maybe mention that some tables should and will be empty
-    6. Good
-- Queries:
-    1. Good
-    2. Good
-    3. Good
+## Requirements
+Before running the project, ensure that the following are installed and set up:
+
+- **Editor:**  
+  - **Visual Studio Code (VS Code)** - recommended for running queries.
+- **VS Code Extensions:**
+  - **SQLite** - Work with SQLite databases in VS Code.
+  - **SQLite Viewer** - View and explore SQLite databases.
+  - Optional: **vscode-pdf** – View PDFs in the [`docs`](docs) folder.
+- **Database File:**  
+  - An empty database file ([`data/Project_DB.db`](data/Project_DB.db)) is provided in the project directory.
+
+## Project Initialization (Use Case 1-4)
+
+This section covers the process of setting up the database and inserting initial data to ensure the system is ready for further operations.
+
+#### **Steps to Initialize the Database:**
+
+1. **Verify or Create the Database**
+    - Open the project directory and locate [`data/Project_DB.db`](data/Project_DB.db).  
+    - If the file exists but is **not empty**, delete it and create a new database file named [`data/Project_DB.db`](data/Project_DB.db).  
+        - The file **must** have this exact name for the Python scripts to work.
+
+2. **Run Database Initialization Script**
+    - Open [`init/DB_Init.sql`](init/DB_Init.sql) in VS Code.  
+    - Press `CTRL + SHIFT + P` → Select `SQLite: Run Query`.
+    - When prompted, select [`data/Project_DB.db`](data/Project_DB.db).  
+
+3. **Insert Sample Data**
+    - Open [`init/DB_Insertions.sql`](init/DB_Insertions.sql) in VS Code.  
+    - Press `CTRL + SHIFT + P` → Select `SQLite: Run Query`.
+    - Select [`data/Project_DB.db`](data/Project_DB.db) (same file as in Step 2).
+
+4. **Verify Database Initialization**
+    - Navigate to [`data/Project_DB.db`](data/Project_DB.db) and click the **refresh button (top left)**.  
+        - Some tables may remain empty, depending on the dataset.
+
+The database is now initialized with entries as described in Use Cases 1-4.
+
+## Database Operations and Queries
+
+### **Retrieving Airline and Aircraft Data (Use Case 5)**
+---
+This use case allows users to retrieve information about airlines, aircraft types, and the number of aircraft in the fleet using SQL queries.
+
+#### **Steps to Retrieve Airline and Aircraft Data:**  
+
+1. **Open the Query File:**
+   - Navigate to the [`sql_operations/use_case_5.sql`](sql_operations/use_case_5.sql) file in **VS Code**.
+
+2. **Execute the SQL Query:**
+   - Press `CTRL + SHIFT + P` → Select `SQLite: Run Query`.
+   - Select [`data/Project_DB.db`](data/Project_DB.db).
+
+3. **View Query Results:**
+   - The results will be displayed in the right-side panel of **VS Code**.
+
+### **Airport Schedule Lookup (Use Case 6)**  
+---
+This use case allows users to retrieve flight schedules from the database based on selected parameters.
+
+#### **Steps to Check Flight Schedules:**
+
+1. **Open the Script:**
+   - Navigate to [`py_operations/use_case_6.py`](py_operations/use_case_6.py) in **VS Code**.
+
+2. **Select a Python Interpreter:**
+   - Press `CTRL + SHIFT + P` → Select `Python: Select Interpreter`.
+   - Choose an interpreter that supports SQLite (e.g., one with Python 3.x installed).
+
+3. **Run the Script:**
+   - Press `CTRL + SHIFT + P` → Select `Python: Run Python File in Terminal`.
+
+4. **Interact with the Terminal:**
+   - The script will prompt you to:
+     - Choose an **airport** from the database.
+     - Select a **day of the week**.
+     - Specify whether you want **departures** or **arrivals**.
+   - After inputting these details, the script will fetch and display the relevant flight schedules.
+
+### **Booking Flights (Use Case 7)**
+---
+This use case allows users to place flight reservations in the system.
+
+#### **Steps to Book a Flight:**
+
+1. **Open the Script:**
+   - Navigate to [`sql_operations/use_case_7.sql`](sql_operations/use_case_7.sql) in **VS Code**.
+
+2. **Run the Script:**
+   - Press `CTRL + SHIFT + P` → Select `Python: Run Python File in Terminal`.
+   - Select the script and execute it.
+
+3. **Provide Booking Details:**
+   - The script will prompt the user to:
+     - Select a **flight number**.
+     - Enter **passenger details**.
+     - Confirm the booking.
+
+4. **Verify Booking:**
+   - The system will store the reservation in the database.
+   - The confirmation will be displayed in the terminal.
+
+### **Finding Available Seats on Flights (Use Case 8)**
+---
+This use case allows users to check seat availability on specific flights.
+
+#### **Steps to Find Available Seats:**
+
+1. **Open the Script:**
+   - Navigate to [`py_operations/use_case_8.py`](py_operations/use_case_8.py) in **VS Code**.
+
+2. **Run the Script:**
+   - Press `CTRL + SHIFT + P` → Select `Python: Run Python File in Terminal`.
+   - Select the script and execute it.
+
+3. **Provide Search Criteria:**
+   - The script will prompt the user to:
+     - Enter a **flight number**.
+     - Choose a **departure date**.
+
+4. **View Available Seats:**
+   - The system will query the database and display a list of open seats.
