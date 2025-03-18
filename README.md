@@ -43,7 +43,7 @@ This section covers the process of setting up the database and inserting initial
 #### **Steps to Initialize the Database:**
 
 1. **Verify or Create the Database**
-    - Open the project directory and locate [[`data/Project_DB.db`](data/Project_DB.db)](data/Project_DB.db).  
+    - Open the project directory and locate [`data/Project_DB.db`](data/Project_DB.db).  
     - If the file exists but is **not empty**, delete it and create a new database file named [`data/Project_DB.db`](data/Project_DB.db).  
         - The file **must** have this exact name for the Python scripts to work.
 

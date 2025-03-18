@@ -386,3 +386,12 @@ INSERT INTO Flight (FlightNumber, RegNR, SegmentID, Date, Status, ActualDepartur
   ('F002_SK888', NULL, 'SK888_2_2', '2025-04-01', 'Planned', NULL, NULL), 
   ('F003_SK888', NULL, 'SK888_3_2', '2025-04-01', 'Planned', NULL, NULL);
 
+-- Populate incoming routes based on FlightSegment's destination
+INSERT INTO AirportHasIncommingRoute (AirportCode, SegmentID)
+SELECT Destination, SegmentID
+FROM FlightSegment;
+
+-- Populate outgoing routes based on FlightSegment's origin
+INSERT INTO AirportHasOutgoingRoute (AirportCode, SegmentID)
+SELECT Origin, SegmentID
+FROM FlightSegment;

@@ -1,20 +1,12 @@
 import sqlite3
 
-def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket_id=0):
-    """
-    For the given flight number, this function:
-      1. Retrieves the flight's SegmentID from the Flight table.
-      2. Uses that SegmentID to get the RouteID and WeekdayCode from FlightSegment.
-      3. Retrieves the TypeName from FlightRoute (using RouteID and WeekdayCode).
-      4. Looks up the seat configuration (ConfigID) from AircraftType using the TypeName.
-      5. Retrieves all seat rows for that configuration from SeatRow.
-      6. Generates seat labels (e.g., '1A', '1B', etc.) from the row information.
-      7. Inserts one record per seat into the BookedSeat table.
-    """
+# Function to fill a flight with available seats given a flightnumber. Generates one entry pr seat for a given flight in the BookedSeat table. 
+def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket_id = None):
+
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
 
-    # 1. Get SegmentID from Flight table using the flight number.
+    # Finds SegmentID from Flight table.
     cur.execute("SELECT SegmentID FROM Flight WHERE FlightNumber = ?", (flight_number,))
     flight_data = cur.fetchone()
     if not flight_data:
@@ -23,7 +15,7 @@ def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket
         return
     segment_id = flight_data[0]
 
-    # 2. Get RouteID and WeekdayCode from FlightSegment using the SegmentID.
+    # Finds RouteID and WeekdayCode from FlightSegment.
     cur.execute("SELECT RouteID, WeekdayCode FROM FlightSegment WHERE SegmentID = ?", (segment_id,))
     seg_data = cur.fetchone()
     if not seg_data:
@@ -32,7 +24,7 @@ def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket
         return
     route_id, weekday_code = seg_data
 
-    # 3. Get TypeName from FlightRoute using RouteID and WeekdayCode.
+    # Finds TypeName from FlightRoute.
     cur.execute("SELECT TypeName FROM FlightRoute WHERE RouteID = ? AND WeekdayCode = ?", (route_id, weekday_code))
     route_data = cur.fetchone()
     if not route_data:
@@ -41,7 +33,7 @@ def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket
         return
     type_name = route_data[0]
 
-    # 4. Look up the seat configuration (ConfigID) from AircraftType using TypeName.
+    # Finds the seat configuration from AircraftType.
     cur.execute("SELECT ConfigID FROM AircraftType WHERE TypeName = ?", (type_name,))
     config_data = cur.fetchone()
     if not config_data:
@@ -50,7 +42,7 @@ def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket
         return
     config_id = config_data[0]
 
-    # 5. Retrieve all seat rows for this configuration from SeatRow.
+    # Retrieve all seat rows for this configuration from SeatRow.
     cur.execute("""
         SELECT RowNumber, LeftSeats, RightSeats
         FROM SeatRow
@@ -63,7 +55,7 @@ def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket
         conn.close()
         return
 
-    # 6. Generate seat labels (e.g., "1A", "1B", etc.)
+    # Generate seat labels
     seats = []
     for row in seat_rows:
         row_number, left_seats, right_seats = row
@@ -74,7 +66,7 @@ def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket
             for letter in right_seats:
                 seats.append(f"{row_number}{letter}")
 
-    # 7. Insert each generated seat into the BookedSeat table.
+    # Insert each generated seat into the BookedSeat table.
     for seat in seats:
         try:
             cur.execute("""
@@ -88,8 +80,19 @@ def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket
     conn.close()
     print(f"Inserted {len(seats)} seats for flight {flight_number}.")
 
+# NB: If trying to insert seats into flight that already has seats SQL will throw a unique error. 
 if __name__ == '__main__':
-    # Update the db_path to point to your actual database file.
-    db_path = 'Project_DB.db'
-    flight_number = input("Enter flight number (e.g., WF1302): ").strip()
+    db_path = 'data/Project_DB.db'
+
+    # Fetch and display the available flights.
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+    cur.execute("SELECT FlightNumber FROM Flight")
+    flights = cur.fetchall()
+    print("Available Flights:")
+    for (flight_number,) in flights:
+        print(f"  {flight_number}")
+
+
+    flight_number = input("Enter flight number: ").strip().upper()
     generate_booked_seats_from_flight(db_path, flight_number)
