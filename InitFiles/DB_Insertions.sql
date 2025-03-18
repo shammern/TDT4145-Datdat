@@ -386,3 +386,66 @@ INSERT INTO Flight (FlightNumber, RegNR, SegmentID, Date, Status, ActualDepartur
   ('F002_SK888', NULL, 'SK888_2_2', '2025-04-01', 'Planned', NULL, NULL), 
   ('F003_SK888', NULL, 'SK888_3_2', '2025-04-01', 'Planned', NULL, NULL);
 
+
+--USECASE 7: Booking of physical flight with assigned seats.
+INSERT INTO Customer(CustomerID, Name, Phone, Email, Nationality) VALUES
+  (00001, 'Ola Nordmann', '99 88 77 66', 'Ola@Nordmann.no', 'NOR')
+  (00002, 'Kari Nordmann', '55 44 33 22', 'kari@Nordmann.no', 'NOR')
+
+-- 1) Create 10 new bookings in the Booking table.
+INSERT INTO Booking (BookingRef, CustomerID, BookingDate, TotalPrice, Status) VALUES
+  (2001, 00001, '2025-03-18', NULL, 'Active'),
+  (2002, 00002, '2025-03-18', NULL, 'Active'),
+  (2003, 00001, '2025-03-18', NULL, 'Active'),
+  (2004, 00002, '2025-03-18', NULL, 'Active'),
+  (2005, 00001, '2025-03-18', NULL, 'Active'),
+  (2006, 00002, '2025-03-18', NULL, 'Active'),
+  (2007, 00001, '2025-03-18', NULL, 'Active'),
+  (2008, 00002, '2025-03-18', NULL, 'Active'),
+  (2009, 00001, '2025-03-18', NULL, 'Active'),
+  (2010, 00002, '2025-03-18', NULL, 'Active');
+
+-- 2) For each booking, create a Ticket referencing flight F001_WF1302.
+--    (Adjust PriceListID, SoldPrice, times, etc. as needed.)
+INSERT INTO Ticket (ReferenceID, FlightNumber, PriceListID, SoldPrice, BoardingTime, EarliestCheckInTime, RegisteredCheckInTime, BookingID) VALUES
+  (3001, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2001),
+  (3002, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2002),
+  (3003, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2003),
+  (3004, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2004),
+  (3005, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2005),
+  (3006, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2006),
+  (3007, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2007),
+  (3008, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2008),
+  (3009, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2009),
+  (3010, 'F001_WF1302', NULL, NULL, '2025-04-01 06:00:00', '2025-04-01 04:30:00', NULL, 2010);
+
+-- 3) Assign random seats (one per ticket) in BookedSeat. 
+--    Update these seat labels to ones that actually exist for flight F001_WF1302 in your SeatRow table.
+INSERT INTO BookedSeat (FlightNumber, Seat, TicketID) VALUES
+  ('F001_WF1302', '1C', 3001),
+  ('F001_WF1302', '2A', 3002),
+  ('F001_WF1302', '3C', 3003),
+  ('F001_WF1302', '4A', 3004),
+  ('F001_WF1302', '5C', 3005),
+  ('F001_WF1302', '6A', 3006),
+  ('F001_WF1302', '7C', 3007),
+  ('F001_WF1302', '8A', 3008),
+  ('F001_WF1302', '9C', 3009),
+  ('F001_WF1302', '10B', 3010);
+
+--USECASE 7: Booking of physical flight with assigned seats.
+INSERT INTO Customer(CustomerID, Name, Phone, Email, Nationality) VALUES
+  (00001, 'Ola Nordmann', '99 88 77 66', 'Ola@Nordmann.no', 'NOR'),
+  (00002, 'Kari Nordmann', '55 44 33 22', 'kari@Nordmann.no', 'NOR');
+
+INSERT INTO Booking (BookingRef, CustomerID, BookingDate, TotalPrice, Status) VALUES
+  (2001, 00001, '2025-03-18', NULL, 'Active'),
+  (2002, 00002, '2025-03-18', NULL, 'Active'),
+  (2003, 00001, '2025-03-18', NULL, 'Active'),
+  (2004, 00002, '2025-03-18', NULL, 'Active'),
+  (2005, 00001, '2025-03-18', NULL, 'Active'),
+  (2006, 00002, '2025-03-18', NULL, 'Active'),
+  (2007, 00001, '2025-03-18', NULL, 'Active'),
+  (2008, 00002, '2025-03-18', NULL, 'Active'),
+  (2009, 00001, '2025-03-18', NULL, 'Active'),
+  (2010, 00002, '2025-03-18', NULL, 'Active');
