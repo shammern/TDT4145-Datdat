@@ -80,7 +80,6 @@ def get_available_seats(db_path, flight_number):
 
 # Prints the seatlayout in a nicly formated way where each row is printed on the same line, 
 # available seats in green, and unavaiable seats are marked with a red X.
-# This function was made with support from ChatGPT
 def print_seat_layout(db_path, route_id, flight_date):
     flight_number, type_name = find_flight_number(db_path, route_id, flight_date)
     if not flight_number:
@@ -100,6 +99,7 @@ def print_seat_layout(db_path, route_id, flight_date):
     
     seat_width = 5
     
+    # The seat layout is printed row by row. Was implemented with support from ChatGPT
     for row_number, left_seats, right_seats in seat_rows:
         left_seats = left_seats or ""
         right_seats = right_seats or ""
