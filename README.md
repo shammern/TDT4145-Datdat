@@ -1,6 +1,6 @@
 <!-- NOTE: In VS Code, right-click README.md and select “Open Preview” to view the formatted document. -->
 
-# TDT4145 - Datamodellering og Databasesystemer: Project
+# TDT4145 - Datamodellering og Databasesystemer: Project Part 2
 
 ## Table of Contents
 - [Overview](#overview)
