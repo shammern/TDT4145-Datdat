@@ -109,6 +109,7 @@ if __name__ == '__main__':
       airport_code = input("\nChoose an airport [Use airport code from list]: ").strip().upper()
       if not any(airport_code == code for code, name in airports):
         print(f"\n\t{RED}Invalid airport code, please try again.{RESET}")
+        
       else:
         break
 
@@ -117,6 +118,7 @@ if __name__ == '__main__':
         weekday_code = input("\nChoose a weekday [1-7]: ").strip()
         if weekday_code not in [str(i) for i in range(1, 8)]:
             print(f"\n\t{RED}Invalid weekday code, please try again..{RESET}")
+
         else:
             break
         
@@ -125,6 +127,7 @@ if __name__ == '__main__':
         dep_or_arr = input("\nDepartures or arrivals? [departures, arrivals]: ").strip().lower()
         if dep_or_arr not in ['departures', 'arrivals']:
             print(f"\n\t{RED}Invalid option, please choose 'departures' or 'arrivals'.{RESET}")
+
         else:
             break
     
