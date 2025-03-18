@@ -50,6 +50,7 @@ if __name__ == '__main__':
     for code, name in airports:
         print(f"{code}: {name}")
     conn.close()
+    
     while True:
       airport_code = input("Choose an airport [Use airport code from list]: ").strip().upper()
       if not any(airport_code == code for code, name in airports):
