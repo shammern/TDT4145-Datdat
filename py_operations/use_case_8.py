@@ -6,6 +6,7 @@ import re
 # These were found with the support from ChatGPT
 GREEN = "\033[92m"
 RED = "\033[91m"
+BLUE = "\033[94m"
 RESET = "\033[0m"
 
 # Formats string to be properly aligned when writing result to terminal
@@ -86,8 +87,7 @@ def print_seat_layout(db_path, route_id, flight_date):
         print("No planned flight found for that route and date.")
         return
     
-    print(f"\n  Flight number: {flight_number}")
-    print(f"  Aircraft type: {type_name}\n")
+    print(f"\nSeat availability for flight \033[1m{flight_number}\033[0m on aircraft type \033[1m{type_name}\033[0m:\n")
     
     config_id = get_seat_configuration(db_path, type_name)
     seat_rows = get_seat_rows(db_path, config_id)
@@ -134,6 +134,7 @@ def print_seat_layout(db_path, route_id, flight_date):
         
         # Print the row with a gap between the two sides
         print("  " +left_side + "   " + right_side)
+    print("\n")
 
 if __name__ == '__main__':
     db_path = 'data/Project_DB.db'
@@ -143,28 +144,30 @@ if __name__ == '__main__':
     cur = conn.cursor()
     cur.execute("SELECT DISTINCT RouteID FROM FlightRoute ORDER BY RouteID")
     route_ids = [row[0] for row in cur.fetchall()]
-    print("Available Route IDs:")
+    print("\nAvailable Route IDs:")
     for rid in route_ids:
-        print(rid)
+        print("  " + rid)
     conn.close()
     
     # Get user input for route ID
     while True:
-        route_id = input("\nEnter flight route ID: ").strip().upper()
+        route_id = input(f"\nEnter flight route ID:\n{BLUE}> ").strip().upper()
+        print(RESET, end="")
         if route_id not in route_ids:
-            print(f"\n\t{RED}Invalid route ID, please try again.{RESET}")
+            print(f"\n  {RED}Invalid route ID, please try again.{RESET}")
 
         else:
             break
     
     # Get user input for flight date
     while True:
-        flight_date = input("\nEnter flight date (YYYY-MM-DD): ").strip()
+        flight_date = input(f"\nEnter flight date (YYYY-MM-DD):\n{BLUE}> ").strip().lower()
+        print(RESET, end="")
         try:
             datetime.strptime(flight_date, "%Y-%m-%d")
             break
         except ValueError:
-            print(f"\n\t{RED}Invalid date format. Please enter the date in YYYY-MM-DD format.{RESET}")
+            print(f"\n  {RED}Invalid date format. Please enter the date in YYYY-MM-DD format.{RESET}")
 
     # Print the seat layout with color coding
     print_seat_layout(db_path, route_id, flight_date)
