@@ -2,7 +2,7 @@
 
 SELECT al.AirlineName,
        a.TypeName,
-       COUNT(*) AS AntallFly
+       COUNT(*) AS Count
 FROM Aircraft a
 JOIN Airline al ON a.AirlineCode = al.AirlineCode
 GROUP BY al.AirlineName, a.TypeName;

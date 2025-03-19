@@ -33,8 +33,6 @@ Before running the project, ensure that the following are installed and set up:
   - **SQLite** - Work with SQLite databases in VS Code.
   - **SQLite Viewer** - View and explore SQLite databases.
   - Optional: **vscode-pdf** – View PDFs in the [`docs`](docs) folder.
-- **Database File:**  
-  - An empty database file ([`data/Project_DB.db`](data/Project_DB.db)) is provided in the project directory.
 
 ## Project Initialization (Use Case 1-4)
 
@@ -44,7 +42,7 @@ This section covers the process of setting up the database and inserting initial
 
 1. **Verify or Create the Database**
     - Open the project directory and locate [`data/Project_DB.db`](data/Project_DB.db).  
-    - If the file exists but is **not empty**, delete it and create a new database file named [`data/Project_DB.db`](data/Project_DB.db).  
+    - If the file exists but is **not empty**, delete it and create a new database file named "Project_DB.db" in the [`data`](data) folder.  
         - The file **must** have this exact name for the Python scripts to work.
 
 2. **Run Database Initialization Script**
@@ -111,21 +109,22 @@ This use case allows users to place flight reservations in the system.
 #### **Steps to Book a Flight:**
 
 1. **Open the Script:**
-   - Navigate to [`sql_operations/use_case_7.sql`](sql_operations/use_case_7.sql) in **VS Code**.
+   - Navigate to [`py_operations/use_case_7.sql`](py_operations/use_case_7.py) in **VS Code**.
 
 2. **Run the Script:**
    - Press `CTRL + SHIFT + P` → Select `Python: Run Python File in Terminal`.
    - Select the script and execute it.
 
-3. **Provide Booking Details:**
+3. **Interact with the Terminal:**
    - The script will prompt the user to:
      - Select a **flight number**.
      - Enter **passenger details**.
-     - Confirm the booking.
 
-4. **Verify Booking:**
+4. **Automatic Execution of the SQL Booking Process**  
+   - The Python script will automatically execute [`sql_operations/book_flight.sql`](sql_operations/book_flight.sql) to process the reservation.
+
+5. **Verify Booking:**
    - The system will store the reservation in the database.
-   - The confirmation will be displayed in the terminal.
 
 ### **Finding Available Seats on Flights (Use Case 8)**
 ---
@@ -147,3 +146,4 @@ This use case allows users to check seat availability on specific flights.
 
 4. **View Available Seats:**
    - The system will query the database and display a list of open seats.
+   - **Note**: For flights with seats that's not configured, all seats will be shown as occupied (X).

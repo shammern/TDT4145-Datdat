@@ -100,6 +100,7 @@ CREATE TABLE FlightSegment (
     Destination TEXT NOT NULL,
     DepartureTime TIME,
     ArrivalTime TIME,
+    Theoretical BOOLEAN,
     FOREIGN KEY (RouteID, WeekdayCode) REFERENCES FlightRoute(RouteID, WeekdayCode)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Origin) REFERENCES Airport(AirportCode)
