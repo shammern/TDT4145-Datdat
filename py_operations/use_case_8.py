@@ -121,7 +121,8 @@ def print_seat_layout_for_flight(db_path, flight_number, type_name):
                 seat_text = ""
             right_side += color_ljust(seat_text, seat_width)
         
-        print("  " + left_side + "   " + right_side + "\n")
+        print("  " + left_side + "   " + right_side)
+    print()
 
 
 # Finds and print all flights for a given route at a specific date
@@ -146,7 +147,7 @@ if __name__ == '__main__':
     route_ids = [row[0] for row in cur.fetchall()]
     print("\nAvailable Route IDs:")
     for rid in route_ids:
-        print("\t" + rid)
+        print("  " + rid)
     conn.close()
     
     # Get user input for route ID

@@ -146,3 +146,4 @@ This use case allows users to check seat availability on specific flights.
 
 4. **View Available Seats:**
    - The system will query the database and display a list of open seats.
+   - **Note**: For flights with seats that's not configured, all seats will be shown as occupied (X).
