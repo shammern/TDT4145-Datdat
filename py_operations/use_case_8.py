@@ -75,7 +75,6 @@ def get_available_seats(db_path, flight_number):
 
 # Prints the seatlayout in a nicly formated way where each row is printed on the same line, 
 # available seats in green, and unavaiable seats are marked with a red X.
-# This function was made with support from ChatGPT
 def print_seat_layout_for_flight(db_path, flight_number, type_name):
 
     print(f"\nSeat availability for flight \033[1m{flight_number}\033[0m on aircraft type \033[1m{type_name}\033[0m:")
@@ -84,6 +83,7 @@ def print_seat_layout_for_flight(db_path, flight_number, type_name):
     seat_rows = get_seat_rows(db_path, config_id)
     available_set = get_available_seats(db_path, flight_number)
     
+    #Start ChatGPT code
     # Determine maximum number of seats on left and right sides for alignment.
     max_left = max((len(row[1]) for row in seat_rows), default=0)
     max_right = max((len(row[2]) for row in seat_rows), default=0)
@@ -122,6 +122,7 @@ def print_seat_layout_for_flight(db_path, flight_number, type_name):
         
         print("  " + left_side + "   " + right_side)
     print()
+    #End ChatGPT code
 
 
 # Finds and print all flights for a given route at a specific date

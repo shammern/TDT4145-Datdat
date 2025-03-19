@@ -18,8 +18,6 @@
 This project is developed as part of **TDT4145 - Datamodellering og Databasesystemer** and is implemented using **VS Code** and **SQLite3**.  
 It focuses on designing and managing a relational database to support various use cases in database management.
 
-For a detailed project description, see [`docs/project_description.pdf`](docs/project_description.pdf).
-
 ### **Project Contributors:**
 - Erik Alexander Standal
 - Torstein Pundsnes
