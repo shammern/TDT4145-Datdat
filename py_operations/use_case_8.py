@@ -78,8 +78,7 @@ def get_available_seats(db_path, flight_number):
 # This function was made with support from ChatGPT
 def print_seat_layout_for_flight(db_path, flight_number, type_name):
 
-    print(f"\n  Flight number: {flight_number}")
-    print(f"  Aircraft type: {type_name}\n")
+    print(f"\nSeat availability for flight \033[1m{flight_number}\033[0m on aircraft type \033[1m{type_name}\033[0m:")
     
     config_id = get_seat_configuration(db_path, type_name)
     seat_rows = get_seat_rows(db_path, config_id)
