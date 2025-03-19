@@ -1,10 +1,12 @@
 import sqlite3
 
 # ANSI escape codes for colors
+# START GPT CODE
 GREEN = "\033[92m"
 RED = "\033[91m"
 BLUE = "\033[94m"
 RESET = "\033[0m"
+# END GPT CODE
 
 # Runs a query to find flight routes for a given airport, weekday and wether the user wants departures or arrivals from the given airport
 def find_routes_for_airport(db_path, airport_code, weekday_code, dep_or_arr):
@@ -49,8 +51,6 @@ def fetch_full_route_info(db_path, route_ids, weekday_code):
     # Build dynamic placeholders for the IN clause.
     placeholders = ','.join(['?'] * len(route_ids))
     
-    # Need to filter out the theoretical route in multilegged routes that is added to handle seperate prices for full route or partialroute.
-    # This is done by filtering out elements that has the number '3' in the 3rd last spot in it's segmentID
     query = f"""
     SELECT FR.RouteID,
            MIN(FS.DepartureTime) AS Time,
@@ -61,11 +61,7 @@ def fetch_full_route_info(db_path, route_ids, weekday_code):
      AND FS.WeekdayCode = FR.WeekdayCode
     WHERE FR.RouteID IN ({placeholders})
       AND FR.WeekdayCode = ?
-      AND substr(
-      FS.SegmentID,
-      instr(FS.SegmentID, '_')+1,
-      instr(substr(FS.SegmentID, instr(FS.SegmentID, '_')+1), '_') - 1
-    ) != '3'
+      AND FS.Theoretical = 0
     GROUP BY FR.RouteID
     ORDER BY Time;
     """
