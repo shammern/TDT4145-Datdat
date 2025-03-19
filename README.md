@@ -18,6 +18,8 @@
 This project is developed as part of **TDT4145 - Datamodellering og Databasesystemer** and is implemented using **VS Code** and **SQLite3**.  
 It focuses on designing and managing a relational database to support various use cases in database management.
 
+The example database [`data/Example_DB.db`](data/Example_DB.db) is a fully initialized database with all use cases executed. It serves as a backup in case the initialization fails for any reason.
+
 ### **Project Contributors:**
 - Erik Alexander Standal
 - Torstein Pundsnes
