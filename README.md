@@ -12,6 +12,7 @@
   - [Airport Schedule Lookup (Use Case 6)](#airport-schedule-lookup-use-case-6)
   - [Booking Flights (Use Case 7)](#booking-flights-use-case-7)
   - [Finding Available Seats on Flights (Use Case 8)](#finding-available-seats-on-flights-use-case-8)
+- [Use of AI](#use-of-ai)
 
 ## Overview
 This project is developed as part of **TDT4145 - Datamodellering og Databasesystemer** and is implemented using **VS Code** and **SQLite3**.  
@@ -147,3 +148,9 @@ This use case allows users to check seat availability on specific flights.
 4. **View Available Seats:**
    - The system will query the database and display a list of open seats.
    - **Note**: For flights with seats that's not configured, all seats will be shown as occupied (X).
+
+## Use of AI
+
+In this project, AI has been utilized to improve print readability, with related modifications documented in the code. Specificly we implemented code to present a more readable output, making seat availability clearer and using color coding for terminal input/output. This provides a more intuitive visualization of available seats compared to a long, unstructured list.
+
+All course-related code is self-written.

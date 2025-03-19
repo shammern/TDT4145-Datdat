@@ -92,6 +92,7 @@ CREATE TABLE FlightRoute (
         ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+-- Changed since Part 1 in project: Added row Theoretical
 CREATE TABLE FlightSegment (
     SegmentID TEXT PRIMARY KEY,
     RouteID TEXT NOT NULL,
@@ -163,6 +164,7 @@ CREATE TABLE Ticket (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- Changed since Part 1 in project: TicketID no longer part of composite key
 CREATE TABLE BookedSeat (
     FlightNumber TEXT NOT NULL,
     Seat TEXT NOT NULL,
