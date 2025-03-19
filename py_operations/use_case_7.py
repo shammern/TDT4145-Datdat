@@ -86,8 +86,8 @@ def generate_booked_seats_from_flight(db_path, flight_number, placeholder_ticket
     print(f"\n{GREEN}Success:{RESET} Inserted \033[1m{len(seats)}\033[0m seats for flight \033[1m{flight_number}\033[0m.\n")
     return True  # Return True if successful
 
+    #Executes an SQL script from a file.
 def run_sql_script(db_path, sql_file):
-    """Executes an SQL script from a file."""
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     
