@@ -130,12 +130,12 @@ INSERT INTO FlightRoute (RouteID, WeekdayCode, AirlineCode, StartDate, EndDate, 
   ('WF1311', '4', 'WF', NULL, NULL, 'Dash-8 100'),
   ('WF1311', '5', 'WF', NULL, NULL, 'Dash-8 100');
 
-INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime) VALUES
-  ('WF1311_1_1', 'WF1311', '1', 'TRD', 'BOO', '15:15', '16:20'),
-  ('WF1311_1_2', 'WF1311', '2', 'TRD', 'BOO', '15:15', '16:20'),
-  ('WF1311_1_3', 'WF1311', '3', 'TRD', 'BOO', '15:15', '16:20'),
-  ('WF1311_1_4', 'WF1311', '4', 'TRD', 'BOO', '15:15', '16:20'),
-  ('WF1311_1_5', 'WF1311', '5', 'TRD', 'BOO', '15:15', '16:20');
+INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime, Theoretical) VALUES
+  ('WF1311_1_1', 'WF1311', '1', 'TRD', 'BOO', '15:15', '16:20', FALSE),
+  ('WF1311_1_2', 'WF1311', '2', 'TRD', 'BOO', '15:15', '16:20', FALSE),
+  ('WF1311_1_3', 'WF1311', '3', 'TRD', 'BOO', '15:15', '16:20', FALSE),
+  ('WF1311_1_4', 'WF1311', '4', 'TRD', 'BOO', '15:15', '16:20', FALSE),
+  ('WF1311_1_5', 'WF1311', '5', 'TRD', 'BOO', '15:15', '16:20', FALSE);
 
 INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES
   ('P_WF1311P_1_1', 'WF1311_1_1', 'Premium', 2018),
@@ -168,13 +168,13 @@ VALUES
   ('WF1302', '4', 'WF', NULL, NULL, 'Dash-8 100'),
   ('WF1302', '5', 'WF', NULL, NULL, 'Dash-8 100');
 
-INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime)
+INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime, Theoretical)
 VALUES
-  ('WF1302_1_1', 'WF1302', '1', 'BOO', 'TRD', '07:35', '08:40'),
-  ('WF1302_1_2', 'WF1302', '2', 'BOO', 'TRD', '07:35', '08:40'),
-  ('WF1302_1_3', 'WF1302', '3', 'BOO', 'TRD', '07:35', '08:40'),
-  ('WF1302_1_4', 'WF1302', '4', 'BOO', 'TRD', '07:35', '08:40'),
-  ('WF1302_1_5', 'WF1302', '5', 'BOO', 'TRD', '07:35', '08:40');
+  ('WF1302_1_1', 'WF1302', '1', 'BOO', 'TRD', '07:35', '08:40', FALSE),
+  ('WF1302_1_2', 'WF1302', '2', 'BOO', 'TRD', '07:35', '08:40', FALSE),
+  ('WF1302_1_3', 'WF1302', '3', 'BOO', 'TRD', '07:35', '08:40', FALSE),
+  ('WF1302_1_4', 'WF1302', '4', 'BOO', 'TRD', '07:35', '08:40', FALSE),
+  ('WF1302_1_5', 'WF1302', '5', 'BOO', 'TRD', '07:35', '08:40', FALSE);
 
 INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES
   ('P_WF1302P_1_1', 'WF1302_1_1', 'Premium', 2018),
@@ -208,14 +208,14 @@ INSERT INTO FlightRoute (RouteID, WeekdayCode, AirlineCode, StartDate, EndDate, 
   ('DY753', '6', 'DY', NULL, NULL, 'Boeing 737 800'),
   ('DY753', '7', 'DY', NULL, NULL, 'Boeing 737 800');
 
-INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime) VALUES
-  ('DY753_1_1', 'DY753', '1', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY753_1_2', 'DY753', '2', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY753_1_3', 'DY753', '3', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY753_1_4', 'DY753', '4', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY753_1_5', 'DY753', '5', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY753_1_6', 'DY753', '6', 'TRD', 'OSL', '10:20', '11:15'),
-  ('DY753_1_7', 'DY753', '7', 'TRD', 'OSL', '10:20', '11:15');
+INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime, Theoretical) VALUES
+  ('DY753_1_1', 'DY753', '1', 'TRD', 'OSL', '10:20', '11:15', FALSE),
+  ('DY753_1_2', 'DY753', '2', 'TRD', 'OSL', '10:20', '11:15', FALSE),
+  ('DY753_1_3', 'DY753', '3', 'TRD', 'OSL', '10:20', '11:15', FALSE),
+  ('DY753_1_4', 'DY753', '4', 'TRD', 'OSL', '10:20', '11:15', FALSE),
+  ('DY753_1_5', 'DY753', '5', 'TRD', 'OSL', '10:20', '11:15', FALSE),
+  ('DY753_1_6', 'DY753', '6', 'TRD', 'OSL', '10:20', '11:15', FALSE),
+  ('DY753_1_7', 'DY753', '7', 'TRD', 'OSL', '10:20', '11:15', FALSE);
 
 INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES
   ('P_DY753P_1_1', 'DY753_1_1', 'Premium', 1500),
@@ -257,14 +257,14 @@ INSERT INTO FlightRoute (RouteID, WeekdayCode, AirlineCode, StartDate, EndDate, 
   ('SK332', '6', 'SK', NULL, NULL, 'Airbus a320neo'),
   ('SK332', '7', 'SK', NULL, NULL, 'Airbus a320neo');
 
-INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime) VALUES
-  ('SK332_1_1', 'SK332', '1', 'OSL', 'TRD', '08:00', '09:05'),
-  ('SK332_1_2', 'SK332', '2', 'OSL', 'TRD', '08:00', '09:05'),
-  ('SK332_1_3', 'SK332', '3', 'OSL', 'TRD', '08:00', '09:05'),
-  ('SK332_1_4', 'SK332', '4', 'OSL', 'TRD', '08:00', '09:05'),
-  ('SK332_1_5', 'SK332', '5', 'OSL', 'TRD', '08:00', '09:05'),
-  ('SK332_1_6', 'SK332', '6', 'OSL', 'TRD', '08:00', '09:05'),
-  ('SK332_1_7', 'SK332', '7', 'OSL', 'TRD', '08:00', '09:05');
+INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime, Theoretical) VALUES
+  ('SK332_1_1', 'SK332', '1', 'OSL', 'TRD', '08:00', '09:05', FALSE),
+  ('SK332_1_2', 'SK332', '2', 'OSL', 'TRD', '08:00', '09:05', FALSE),
+  ('SK332_1_3', 'SK332', '3', 'OSL', 'TRD', '08:00', '09:05', FALSE),
+  ('SK332_1_4', 'SK332', '4', 'OSL', 'TRD', '08:00', '09:05', FALSE),
+  ('SK332_1_5', 'SK332', '5', 'OSL', 'TRD', '08:00', '09:05', FALSE),
+  ('SK332_1_6', 'SK332', '6', 'OSL', 'TRD', '08:00', '09:05', FALSE),
+  ('SK332_1_7', 'SK332', '7', 'OSL', 'TRD', '08:00', '09:05', FALSE);
 
 INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES
   ('P_SK332P_1_1', 'SK332_1_1', 'Premium', 1500),
@@ -304,26 +304,26 @@ INSERT INTO FlightRoute (RouteID, WeekdayCode, AirlineCode, StartDate, EndDate, 
   ('SK888', '5', 'SK', NULL, NULL, 'Airbus a320neo');
 
 
-INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime) VALUES
-  ('SK888_1_1', 'SK888', '1', 'TRD', 'BGO', '10:00', '11:10'),
-  ('SK888_2_1', 'SK888', '1', 'BGO', 'SVG', '11:40', '12:10'),
-  ('SK888_3_1', 'SK888', '1', 'TRD', 'SVG', '10:00', '12:10'),
+INSERT INTO FlightSegment (SegmentID, RouteID, WeekdayCode, Origin, Destination, DepartureTime, ArrivalTime, Theoretical) VALUES
+  ('SK888_1_1', 'SK888', '1', 'TRD', 'BGO', '10:00', '11:10', FALSE),
+  ('SK888_2_1', 'SK888', '1', 'BGO', 'SVG', '11:40', '12:10', FALSE),
+  ('SK888_3_1', 'SK888', '1', 'TRD', 'SVG', '10:00', '12:10', TRUE),
   
-  ('SK888_1_2', 'SK888', '2', 'TRD', 'BGO', '10:00', '11:10'),
-  ('SK888_2_2', 'SK888', '2', 'BGO', 'SVG', '11:40', '12:10'),
-  ('SK888_3_2', 'SK888', '2', 'TRD', 'SVG', '10:00', '12:10'),
+  ('SK888_1_2', 'SK888', '2', 'TRD', 'BGO', '10:00', '11:10', FALSE),
+  ('SK888_2_2', 'SK888', '2', 'BGO', 'SVG', '11:40', '12:10', FALSE),
+  ('SK888_3_2', 'SK888', '2', 'TRD', 'SVG', '10:00', '12:10', TRUE),
   
-  ('SK888_1_3', 'SK888', '3', 'TRD', 'BGO', '10:00', '11:10'),
-  ('SK888_2_3', 'SK888', '3', 'BGO', 'SVG', '11:40', '12:10'),
-  ('SK888_3_3', 'SK888', '3', 'TRD', 'SVG', '10:00', '12:10'),
+  ('SK888_1_3', 'SK888', '3', 'TRD', 'BGO', '10:00', '11:10', FALSE),
+  ('SK888_2_3', 'SK888', '3', 'BGO', 'SVG', '11:40', '12:10', FALSE),
+  ('SK888_3_3', 'SK888', '3', 'TRD', 'SVG', '10:00', '12:10', TRUE),
   
-  ('SK888_1_4', 'SK888', '4', 'TRD', 'BGO', '10:00', '11:10'),
-  ('SK888_2_4', 'SK888', '4', 'BGO', 'SVG', '11:40', '12:10'),
-  ('SK888_3_4', 'SK888', '4', 'TRD', 'SVG', '10:00', '12:10'),
+  ('SK888_1_4', 'SK888', '4', 'TRD', 'BGO', '10:00', '11:10', FALSE),
+  ('SK888_2_4', 'SK888', '4', 'BGO', 'SVG', '11:40', '12:10', FALSE),
+  ('SK888_3_4', 'SK888', '4', 'TRD', 'SVG', '10:00', '12:10', TRUE),
   
-  ('SK888_1_5', 'SK888', '5', 'TRD', 'BGO', '10:00', '11:10'),
-  ('SK888_2_5', 'SK888', '5', 'BGO', 'SVG', '11:40', '12:10'),
-  ('SK888_3_5', 'SK888', '5', 'TRD', 'SVG', '10:00', '12:10');
+  ('SK888_1_5', 'SK888', '5', 'TRD', 'BGO', '10:00', '11:10', FALSE),
+  ('SK888_2_5', 'SK888', '5', 'BGO', 'SVG', '11:40', '12:10', FALSE),
+  ('SK888_3_5', 'SK888', '5', 'TRD', 'SVG', '10:00', '12:10', TRUE);
 
 
 INSERT INTO PriceList (PriceListID, SegmentID, Category, CategoryPrice) VALUES

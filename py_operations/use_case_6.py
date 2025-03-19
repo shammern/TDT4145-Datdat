@@ -60,11 +60,7 @@ def fetch_full_route_info(db_path, route_ids, weekday_code):
      AND FS.WeekdayCode = FR.WeekdayCode
     WHERE FR.RouteID IN ({placeholders})
       AND FR.WeekdayCode = ?
-      AND substr(
-      FS.SegmentID,
-      instr(FS.SegmentID, '_')+1,
-      instr(substr(FS.SegmentID, instr(FS.SegmentID, '_')+1), '_') - 1
-    ) != '3'
+      AND FS.Theoretical = 0
     GROUP BY FR.RouteID
     ORDER BY Time;
     """
